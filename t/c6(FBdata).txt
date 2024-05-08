@@ -1,0 +1,38 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df=pd.read_csv('dataset_Facebook.csv',sep=';')
+df
+
+
+sns.barplot(data=df,x='Post Month',y='Page total likes')
+plt.title('Post Likes over the Months')
+plt.tight_layout()
+
+
+sns.scatterplot(data=df,x='Lifetime Post Total Reach',y='Lifetime Post Total Impressions')
+plt.title('Lifetime Post Total Reach vs Lifetime Post Total Impressions')
+
+
+
+
+sns.lineplot(data=df,x='Post Month',y='Page total likes')
+plt.title('Post Month vs Page total likes')
+plt.tight_layout()
+
+
+
+sns.histplot(data=df, x='Lifetime Engaged Users',kde=True)  # Seaborn histogram
+plt.title('Distribution of Lifetime Engaged Users')
+plt.xlabel('Lifetime Engaged Users')
+plt.ylabel('Frequency')
+
+
+
+sns.barplot(data=df, x='Type', y='Total Interactions')  # Seaborn bar plot
+plt.title('Total Interactions by Post Type')
+plt.xlabel('Post Type')
+plt.ylabel('Total Interactions')
+
+

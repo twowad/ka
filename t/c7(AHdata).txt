@@ -1,0 +1,64 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+df1=pd.read_csv('Heart_Disease_Prediction.csv')
+df1
+
+df1.columns
+
+
+
+sns.countplot(data=df1, x='Sex', hue='Heart Disease')
+plt.title('Heart Disease by Sex')
+plt.xlabel('Sex (0 = Female, 1 = Male)')
+plt.ylabel('Count')
+plt.legend(title='Heart Disease', labels=['No', 'Yes'])
+plt.show()
+
+
+
+sns.barplot(data=df1, x='Heart Disease', y='Cholesterol')
+plt.title('Cholesterol Levels and Heart Disease')
+plt.xlabel('Heart Disease')
+plt.ylabel('Cholesterol')
+plt.show()
+
+
+# Scatter plot of age and cholesterol using seaborn
+
+sns.scatterplot(data=df1, x='Age', y='Cholesterol', alpha=0.9)
+plt.xlabel('Age')
+plt.ylabel('Cholesterol')
+plt.title('Age vs. Cholesterol')
+
+
+
+sns.histplot(data=df1, x='Age', bins=20, kde=True)
+plt.title('Age Distribution')
+
+plt.show()
+
+
+sns.barplot(data=df1,y='BP',x='Heart Disease')
+plt.title('BP vs Heart Disease')
+
+
+df2=pd.read_csv('AirQuality.csv',sep=';')
+df2
+
+df2.columns
+
+# Scatter plot of NOx(GT) vs. NO2(GT) using seaborn
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=df2, x='NOx(GT)', y='NO2(GT)', alpha=0.5)
+plt.title('NOx(GT) vs. NO2(GT)')
+plt.show()
+
+
+
+sns.scatterplot(data=df2,x='PT08.S1(CO)',y='PT08.S2(NMHC)')
+
+
+

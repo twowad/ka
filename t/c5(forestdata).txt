@@ -1,0 +1,29 @@
+import pandas as pd
+import swifter
+
+
+df=pd.read_csv('forestfires.csv')
+df
+
+
+def map_function(row):
+    result=row['X'] * row['wind']
+    return result
+
+
+df['map_result']=df.swifter.apply(map_function,axis=1)
+df
+
+
+reduce_result = df['map_result'].sum()
+reduce_result
+
+df.describe()
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
+sns.scatterplot(data=df,x='temp',y='wind')
+plt.title('Temp vs Wind')
+

@@ -1,0 +1,56 @@
+import pandas as pd 
+import numpy as np 
+
+df1=pd.read_csv('heart.csv')
+df1
+
+#data tranformation 
+df1.loc[df1['sex']==1,'sex']='M'
+
+df1.loc[df1['sex']==0,'sex']='F'
+
+df1
+
+
+#Error Correction 
+df1[df1['ca']==4]
+
+df1.loc[df1['ca']==4,'ca']=np.NaN
+
+
+df1
+
+df1.isnull().sum()
+
+df1.loc[df1['sex']=='M','sex']=1
+df1.loc[df1['sex']=='F','sex']=0
+
+df1=df1.fillna(df1.median())
+df1
+
+
+df1.isnull().sum()
+
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+X = df1[['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']]
+y = df1['target']
+
+# Splitting data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Initialize logistic regression model
+model = LogisticRegression()
+
+# Train the model
+model.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = model.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)

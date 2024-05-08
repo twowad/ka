@@ -1,0 +1,89 @@
+import pandas as pd
+
+df1=pd.read_csv('AirQuality.csv',sep=';')
+df1
+
+#Data cleaning
+df1=df1.rename(columns={'T':'Temperature'})
+df1=df1.rename(columns={'RH':'Relative Humidity'})
+df1=df1.rename(columns={'AH':'Absolute Humidity'})
+df1
+
+df1=df1.drop(['Unnamed: 15','Unnamed: 16'],axis=1)
+df1
+
+df1['CO(GT)']=df1['CO(GT)'].str.replace(',','.').astype(float)
+df1['C6H6(GT)']=df1['C6H6(GT)'].str.replace(',','.').astype(float)
+
+df1['Temperature']=df1['Temperature'].str.replace(',','.').astype(float)
+df1['Relative Humidity']=df1['Relative Humidity'].str.replace(',','.').astype(float)
+df1['Absolute Humidity']=df1['Absolute Humidity'].str.replace(',','.').astype(float)
+df1
+
+
+
+df1.shape
+
+
+#it removes duplicate rows from the dataset
+df1=df1.drop_duplicates()
+df1
+
+
+df1.shape
+
+
+df1.isnull().sum()
+
+
+# df1 = df1.apply(pd.to_numeric, errors='coerce')
+# df1 = df1.fillna(df1.mean())
+
+df1=df1.drop(['Date','Time'],axis=1)
+df1 = df1.fillna(df1.mean())
+
+df1
+
+
+df1.isnull().sum()
+
+
+df2=pd.read_csv('heart.csv')
+df2
+
+
+df2.isnull().sum()
+
+
+df2=df2.drop(['fbs','restecg','thalach','exang','oldpeak','slope','ca','thal'],axis=1)
+df2
+
+
+
+df21=df2[['age','target']].loc[0:15]
+df21
+
+
+
+df22=df2[['age','target']].loc[16:30]
+df22
+
+
+df23=df2[['age','target']].loc[31:50]
+df23
+
+
+
+integration=pd.concat([df21,df22,df23])
+integration
+
+
+
+#data tranformation
+heart=pd.read_csv('heart.csv')
+heart
+
+heart.loc[heart['sex']==1,'sex']='M'
+heart.loc[heart['sex']==0,'sex']='F'
+heart.head()
+

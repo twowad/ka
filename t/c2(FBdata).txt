@@ -1,0 +1,23 @@
+import pandas as pd
+df=pd.read_csv('dataset_Facebook.csv' ,sep=';')
+df
+
+sort_values = df.sort_values(['Page total likes','Category'],ascending=False)
+sort_values
+
+
+df1=df[['Page total likes','Type','Category']].loc[0:15]
+df1
+
+
+df2=df[['Page total likes','Type','Category']].loc[16:30]
+df2
+
+
+df3=df[['Page total likes','Type','Category']].loc[31:50]
+df3
+
+
+merge = pd.concat([df1,df2,df3])
+merge
+
